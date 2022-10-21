@@ -32,8 +32,9 @@ int MaxStack::size() const{
     return (cola.size());
 }
 
-void MaxStack::InvertQueue(queue<int> cola){
+void MaxStack::InvertQueue(queue<int>& cola){
     stack<int> aux;
+
     for (int i=cola.size()-1; i>=0; --i){
         int d=cola.front();
         aux.push(d);
@@ -45,3 +46,4 @@ void MaxStack::InvertQueue(queue<int> cola){
         aux.pop();
     }
 }
+
