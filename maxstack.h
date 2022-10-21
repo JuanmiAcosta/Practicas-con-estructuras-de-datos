@@ -19,7 +19,7 @@ struct element {
 class MaxStack{
 private:
     queue<int> cola;
-
+    void InvertQueue(queue<int> cola); // Función auxiliar que invierte la cola (Utilidad: en funcion pop)
 public:
 
     int top();
@@ -27,5 +27,6 @@ public:
     void push(int num);
     void pop();
     int size() const;
+
 
 };
