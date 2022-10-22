@@ -59,7 +59,7 @@ La implementación de la pila en este caso se ha hecho con una sola cola:
 Como el top() de una pila accede al elemento del top que es el último elemento insertado, en caso de una cola este elemento sería el del back():
 @image html topMS.png
 
-###Empty ();
+###Empty();
 
 Este caso es sencillo, para comprobar que la pila esté vacía comprobamos que la cola interna está vacía:
 @image html emptyMS.png
@@ -72,6 +72,8 @@ el máximo siempre tendrá sentido:
 @image html pushMS.png
 
 <strong style="color:red"> ADVERTENCIA </strong> El primer elemento insertado no deberá comprobar el máximo anterior, esto supondría un <strong style="color:purple">Segmentation fault. Core dumped.</strong>
+
+<strong style="color:blue"> CONSEJO </strong> Este error es lógico una vez que se piensa, la forma más rápida de encontrarlo es usando <strong style="color:green">el debugger</strong> de CLion.
 
 ###Pop();
 
@@ -87,5 +89,52 @@ pero en este caso y al sólo poder quitar elementos del "front" de la cola, debe
 
 Por último, también se sobrecargó el operador "<<" para mayor comodidad a la hora de mostrar los datos por pantalla.
 Esto también se hará en la cola <strong>MaxQueue</strong>.
+
+
+##MaxQueue
+
+- front();
+- empty();
+- push(int value);
+- pop();
+- size();
+
+La pregunta es, <strong>¿cómo funcionan internamente estos métodos si por dentro es una pila?</strong>
+
+- element front();
+- bool empty() const;
+- void push(int num);
+- void pop();
+- int size() const;
+
+La implementación de la cola en este caso se ha hecho con dos pilas:
+
+@image html ImpMQ.png
+
+###Front();
+
+Para poder ver el último elemento insertado tendríamos que pasar todos los elementos de la primera pila
+a la segunda, de ese modo accediento a su "top" ahora podemos ver el elemento inserado en último lugar:
+@image html frontMQ.png
+
+###Empty();
+
+Para ver si la cola está vacía se ha de comprobar que las dos pilas internas estén vacías.
+@image html emptyMQ.png
+
+###Push();
+
+Los elementos se insertan en la primera pila:
+@image html pushMQ.png
+
+###Pop();
+
+Para sacar elementos se han de quitar del top de la segunda pila:
+@image html popMQ.png
+
+###Size();
+
+Para conocer el "size" de la cola se ha de sumar el size de las dos pilas:
+@image html sizeMQ.png
 
 */
