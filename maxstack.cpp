@@ -10,7 +10,7 @@
 
 //Funciones privadas
 
-int MaxStack::top(){
+element MaxStack::top(){
     return (cola.back());
 }
 
@@ -18,8 +18,16 @@ bool MaxStack::empty() const{
     return(cola.empty());
 }
 
-void MaxStack::push(int num){
-    cola.push(num);
+void MaxStack::push(int value){
+    element elem;
+    elem.value=value;
+    elem.maximum=value;
+    if (!cola.empty()) {
+        if (elem.value < cola.back().maximum) {
+            elem.maximum = cola.back().maximum;
+        }
+    }
+    cola.push(elem);
 }
 
 void MaxStack::pop() {
@@ -32,18 +40,24 @@ int MaxStack::size() const{
     return (cola.size());
 }
 
-void MaxStack::InvertQueue(queue<int>& cola){
-    stack<int> aux;
+void MaxStack::InvertQueue(queue<element>& cola){
+    stack<element> aux;
 
     for (int i=cola.size()-1; i>=0; --i){
-        int d=cola.front();
+        element d=cola.front();
         aux.push(d);
         cola.pop();
     }
+
     for (int i=aux.size()-1; i>=0; --i){
-        int d=aux.top();
+        element d=aux.top();
         cola.push(d);
         aux.pop();
     }
+}
+
+ostream& operator<<(ostream &flujo, const element &elem){
+    flujo << elem.value << "," << elem.maximum;
+    return flujo;
 }
 
