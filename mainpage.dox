@@ -1,11 +1,91 @@
-/*! \mainpage Título de la página principal
+/*! \mainpage MaxStack y MaxQueue.
+@image html ugr.png
+### Realizado por Juan Miguel Acosta ortega y Luis Soto Torres
 
 # Introducción
 
-A RELLENAR POR EL ESTUDIANTE
+Los tipos de datos abstractos lineales se componen de una secuencia de elementos, a0, a1
+, ..., an-1
+dispuestos en una dimensión. Las estructuras de datos lineales más relevantes son:
+- Vectores 1-d
+- Listas
+- Pilas (LIFO)
+- Colas (FIFO)
+
+Los nombres LIFO y FIFO hacen referencia a cómo se accede a los datos. Así, tenemos LIFO (last
+input first output), que hace referencia a las colecciones en las que el último elemento en entrar es
+el primero en salir. Por otro lado, la política FIFO (first input first output) hace referencia a las
+colecciones en las que el primero en entrar es el primero en salir. Esta es la principal diferencia que
+existe entre las pilas y colas.
+
+En esta práctica en concreto vamos a trabajar sólo con dos tipos de datos lineales: __la pila (FIFO) y la cola (LIFO)__.
+
+Esta será el primer ejercicio práctico en el que hagamos uso de la <a href="https://es.wikipedia.org/wiki/Standard_Template_Library" style="color:red"><strong>STL</strong></a> y de
+sus ventajas. Por ello habrá una dificultad añadida, y es que vamos a implementar una pila con el tipo de dato cola, y viceversa.
+
+Más adelante expplicaremos más en detalle la dificultad que esto supone, ya que además no son una pila de <strong><int></strong>, sino que será
+una pila de pares, que en este caso será un <strong>struct</strong> "element", conformado por un valor y un máximo.
+
+Esto nos obliga a estar actualizando el máximo según el tipo de dato, ya que según el programa que estemos trabajando nos hará hacerlo de una manera u otra.
+
+Ahora indicaremos cuáles son las peculiaridades, problemas y demás detalles de cada tipo de implementación:
 
 # Ejecutables
 
-A RELLENAR POR EL ESTUDIANTE
+##MaxStack
+
+Una cola y una pila poseen métodos parecidos, pero que internamente hacen cosas diferentes. Esto es debido a que su utilidad y composición es diferente.
+
+- top();
+- empty();
+- push(int value);
+- pop();
+- size();
+
+La pregunta es, <strong>¿cómo funcionan internamente estos métodos si por dentro hay una cola?</strong>
+
+- element top();
+- bool empty() const;
+- void push(int value);
+- void pop();
+- int size() const;
+
+La implementación de la pila en este caso se ha hecho con una sola cola:
+
+@image html ImpMS.drawio.png
+
+###Top();
+
+Como el top() de una pila accede al elemento del top que es el último elemento insertado, en caso de una cola este elemento sería el del back():
+@image html topMS.png
+
+###Empty ();
+
+Este caso es sencillo, para comprobar que la pila esté vacía comprobamos que la cola interna está vacía:
+@image html emptyMS.png
+
+###Push();
+
+En este método sólo hay que controlar que cuando insertes un "element", si el valor es menor que el máximo anterior
+el máximo insertado se actualizará al anterior y nada más. Así cuándo quitemos elementos de la pila
+el máximo siempre tendrá sentido:
+@image html pushMS.png
+
+<strong style="color:red"> ADVERTENCIA </strong> El primer elemento insertado no deberá comprobar el máximo anterior, esto supondría un <strong style="color:purple">Segmentation fault. Core dumped.</strong>
+
+###Pop();
+
+Este método se vuelve mucho más ineficiente en esta implementación, ya que una pila normal podría deshacerse fácilmente de su "top",
+pero en este caso y al sólo poder quitar elementos del "front" de la cola, debemos invertirla (para ello utilizamos un método privado auxiliar llamado
+<strong>InvertQueue(queue<element>& cola)</strong>), quitar el elemento del "front" que es el antiguo "back", y luego volver a invertirla para dejarla como estaba.
+@image html popMS.png
+
+###Size();
+
+Éste método como en el caso de empty, es simplemente comprobar el size de la cola interna:
+@image html sizeMS.png
+
+Por último, también se sobrecargó el operador "<<" para mayor comodidad a la hora de mostrar los datos por pantalla.
+Esto también se hará en la cola <strong>MaxQueue</strong>.
 
 */
