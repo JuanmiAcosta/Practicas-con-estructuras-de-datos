@@ -22,7 +22,6 @@ private:
     stack<int> second;
 
 public:
-
     int front();
     bool empty() const;
     void push(int num);
