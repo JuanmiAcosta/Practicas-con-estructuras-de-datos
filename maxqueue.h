@@ -10,16 +10,16 @@
 
 using namespace std;
 
-
 struct element {
     int value; // Current value to store
     int maximum; // Current max value in the structure
 };
 
+ostream& operator<<(ostream &flujo, const element &elem);
 class MaxQueue{
 private:
-    stack<element> first; //hacemos de int y no de element primero para ir paso a paso
-    stack<element> second;
+    stack<element> cola; //hacemos de int y no de element primero para ir paso a paso
+
 
 public:
     element front();
