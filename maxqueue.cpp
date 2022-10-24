@@ -10,37 +10,85 @@
 
 //Funciones privadas
 
-int MaxQueue::front(){
-    if(second.empty()){
-        while(!first.empty()){
-            int aux=first.top();
-            second.push(aux);
-            first.pop();
+element MaxQueue::front(){
+    stack<element> auxiliar;
+    element salida;
+    if(auxiliar.empty()){
+        while(!cola.empty()){
+            element aux=cola.top();
+            auxiliar.push(aux);
+            cola.pop();
+        }
+
+    }
+    if(!auxiliar.empty())salida=auxiliar.top();
+
+    if(cola.empty()){
+        while(!auxiliar.empty()){
+            element aux=auxiliar.top();
+            cola.push(aux);
+            auxiliar.pop();
         }
     }
-    return second.top();
+    return salida;
 }
 
 bool MaxQueue::empty() const{
-    return (first.empty() && second.empty());
+    return (cola.empty());
 }
 
 void MaxQueue::push(int num){
-    first.push(num);
-}
+    //first.push(num);
+    element auxiliar,auxiliar2;
+    auxiliar.maximum=num;
+    auxiliar.value=num;
 
+    stack<element> aux;
+    aux.push(auxiliar);
+    // Move all elements from s1 to s2
+    while (!cola.empty()) {
+        auxiliar=cola.top();
+        auxiliar2=aux.top();
+        if((auxiliar2.maximum>=auxiliar.maximum)){
+            auxiliar.maximum=auxiliar2.maximum;
+        }
+        aux.push(auxiliar);
+        cola.pop();
+    }
+
+
+    // Push everything back to s1
+    while (!aux.empty()) {
+        cola.push(aux.top());
+        aux.pop();
+    }
+}
 void MaxQueue::pop() {
-    if(second.empty()){
-        while(!first.empty()){
-            int aux=first.top();
-            second.push(aux);
-            first.pop();
+    stack<element> auxiliar;
+
+    if(auxiliar.empty()){
+        while(!cola.empty()){
+            element aux=cola.top();
+            auxiliar.push(aux);
+            cola.pop();
         }
     }
-    second.pop();
+    auxiliar.pop();
+    if(cola.empty()){
+        while(!auxiliar.empty()){
+            element aux=auxiliar.top();
+            cola.push(aux);
+            auxiliar.pop();
+        }
+    }
 }
 
 int MaxQueue::size() const{
-    return (first.size()+second.size());
+    return (cola.size());
 }
 
+
+ostream& operator<<(ostream &flujo, const element &elem){
+    flujo << elem.value << "," << elem.maximum;
+    return flujo;
+}
