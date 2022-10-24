@@ -10,19 +10,19 @@
 
 using namespace std;
 
-/*
+
 struct element {
     int value; // Current value to store
     int maximum; // Current max value in the structure
-}^*/
+};
 
 class MaxQueue{
 private:
-    stack<int> first; //hacemos de int y no de element primero para ir paso a paso
-    stack<int> second;
+    stack<element> first; //hacemos de int y no de element primero para ir paso a paso
+    stack<element> second;
 
 public:
-    int front();
+    element front();
     bool empty() const;
     void push(int num);
     void pop();
