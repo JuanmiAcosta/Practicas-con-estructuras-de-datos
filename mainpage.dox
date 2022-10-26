@@ -107,34 +107,36 @@ La pregunta es, <strong>¿cómo funcionan internamente estos métodos si por den
 - void pop();
 - int size() const;
 
-La implementación de la cola en este caso se ha hecho con dos pilas:
+La implementación de la cola en este caso se ha hecho con una pilas:
 
 @image html ImpMQ.png
 
 ###Front();
 
-Para poder ver el último elemento insertado tendríamos que pasar todos los elementos de la primera pila
-a la segunda, de ese modo accediento a su "top" ahora podemos ver el elemento inserado en último lugar:
+Para poder ver el último elemento insertado tendríamos que pasar todos los elementos de la pila interna
+a una pila auxiliar creada en esa función, de ese modo accediento a su "top" ahora podemos ver el elemento inserado en último lugar:
 @image html frontMQ.png
 
 ###Empty();
 
-Para ver si la cola está vacía se ha de comprobar que las dos pilas internas estén vacías.
+Para ver si la cola está vacía se ha de comprobar que la pila atributo de la clase MaxQueue está vacía.
 @image html emptyMQ.png
 
 ###Push();
 
-Los elementos se insertan en la primera pila:
+Se usan "elements" auxiliares para compararlos. Si el maximum del top de la pila es mayor o igual que el nº a insertar, se actualiza ese mismo máximo.
+Se inserta en el "top" de la pila:
 @image html pushMQ.png
 
 ###Pop();
 
-Para sacar elementos se han de quitar del top de la segunda pila:
+Para quitar elementos de una cola, es decir, "pop" elimina elementos de su front, para implementar esto con una pila debemos generar una pila
+auxiliar con todos sus elementos con orden invertido, quitar el top de la auxiliar, y volver a insertar todos los elementos en la pila.
 @image html popMQ.png
 
 ###Size();
 
-Para conocer el "size" de la cola se ha de sumar el size de las dos pilas:
+Para conocer el "size" de la cola sólo tenemos que conocer el size de la pila interna:
 @image html sizeMQ.png
 
 */
