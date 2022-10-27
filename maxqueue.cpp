@@ -14,19 +14,19 @@ element MaxQueue::front(){
     stack<element> auxiliar;
     element salida;
     if(auxiliar.empty()){
-        while(!cola.empty()){
-            element aux=cola.top();
+        while(!pila.empty()){
+            element aux=pila.top();
             auxiliar.push(aux);
-            cola.pop();
+            pila.pop();
         }
 
     }
     if(!auxiliar.empty())salida=auxiliar.top();
 
-    if(cola.empty()){
+    if(pila.empty()){
         while(!auxiliar.empty()){
             element aux=auxiliar.top();
-            cola.push(aux);
+            pila.push(aux);
             auxiliar.pop();
         }
     }
@@ -34,11 +34,11 @@ element MaxQueue::front(){
 }
 
 bool MaxQueue::empty() const{
-    return (cola.empty());
+    return (pila.empty());
 }
 
 void MaxQueue::push(int num){
-    //first.push(num);
+
     element auxiliar,auxiliar2;
     auxiliar.maximum=num;
     auxiliar.value=num;
@@ -46,45 +46,47 @@ void MaxQueue::push(int num){
     stack<element> aux;
     aux.push(auxiliar);
     // Move all elements from s1 to s2
-    while (!cola.empty()) {
-        auxiliar=cola.top();
+    while (!pila.empty()) {
+        auxiliar=pila.top();++++++++++++++++++++++++++++
+
         auxiliar2=aux.top();
         if((auxiliar2.maximum>=auxiliar.maximum)){
             auxiliar.maximum=auxiliar2.maximum;
         }
         aux.push(auxiliar);
-        cola.pop();
+        pila.pop();
     }
 
 
     // Push everything back to s1
     while (!aux.empty()) {
-        cola.push(aux.top());
+        pila.push(aux.top());
         aux.pop();
     }
 }
+
 void MaxQueue::pop() {
     stack<element> auxiliar;
 
     if(auxiliar.empty()){
-        while(!cola.empty()){
-            element aux=cola.top();
+        while(!pila.empty()){
+            element aux=pila.top();
             auxiliar.push(aux);
-            cola.pop();
+            pila.pop();
         }
     }
     auxiliar.pop();
-    if(cola.empty()){
+    if(pila.empty()){
         while(!auxiliar.empty()){
             element aux=auxiliar.top();
-            cola.push(aux);
+            pila.push(aux);
             auxiliar.pop();
         }
     }
 }
 
 int MaxQueue::size() const{
-    return (cola.size());
+    return (pila.size());
 }
 
 

@@ -52,7 +52,7 @@ public:
 
     /**
       @brief Para calcular el "size" de la pila, calula el size de la cola interna.
-      @return Devuelve un valor entero como tamaño.
+      @post Devuelve un valor entero como tamaño.
     **/
     int size() const;
 
