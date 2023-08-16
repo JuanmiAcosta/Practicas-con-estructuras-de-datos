@@ -2,8 +2,7 @@
 
 Esta práctica es la primera en la que se trabaja con la STL, implementamos una cola con pilas y viceversa. Además también trabajamos con un tipo de dato "pair" casero. 🤔
 
-![Imagen representativa](https://github.com/JuanmiAcosta/Practicas-con-estructuras-de-datos/img
-/frontMQ.png/blob/main/captura.png?raw=true)
+![Imagen representativa](https://github.com/JuanmiAcosta/Practicas-con-estructuras-de-datos/blob/main/img/frontMQ.png?raw=true)
 
 ## Tecnologías utilizadas 🛠️ / Lenguajes de programación 👀
 
